@@ -12,15 +12,26 @@ public class Reader {
     }
 
     void rating(Book book) {
-        int rating = book.name.replace(" ", "").length();
-        if (book.author == null) {
-            rating -= new Random().nextInt(10) + new Random().nextInt(10) + new Random().nextInt(10);
-        } else if (book.serialNumber == 0) {
-            rating += book.author.replace(" ", "").length() - new Random().nextInt(10) - new Random().nextInt(10);
-        } else if (book.numberOfPages == 0) {
-            rating += book.author.replace(" ", "").length() - book.serialNumber - new Random().nextInt(10);
+        int rating = 0;
+        if (book.name != null) {
+            rating = book.name.replace(" ", "").length();
         } else {
-            rating += book.author.replace(" ", "").length() - book.serialNumber + book.numberOfPages;
+            rating -= new Random().nextInt(10);
+        }
+        if (book.author != null) {
+            rating += book.author.replace(" ", "").length();
+        } else {
+            rating -= new Random().nextInt(10);
+        }
+        if (book.serialNumber != 0) {
+            rating -= book.serialNumber;
+        } else {
+            rating -= new Random().nextInt(10);
+        }
+        if (book.numberOfPages != 0) {
+            rating += book.numberOfPages;
+        } else {
+            rating -= new Random().nextInt(10);
         }
         System.out.println("Rating of the book \"" + book.name + "\" is " + rating);
     }
