@@ -14,7 +14,7 @@ public class Reader {
     void rating(Book book) {
         int rating = 0;
         if (book.name != null) {
-            rating = book.name.replace(" ", "").length();
+            rating += book.name.replace(" ", "").length();
         } else {
             rating -= new Random().nextInt(10);
         }
